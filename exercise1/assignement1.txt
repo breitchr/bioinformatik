@@ -1,0 +1,9 @@
+Exercise 1)
+
+Assignement 1)
+
+a) FORMUL record, colum 19 (* for water)
+b) 77-78
+c) x:31-38, y:39-46, z:47-54
+d) 18-20
+e) 22 (chainID)
