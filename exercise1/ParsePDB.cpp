@@ -3,31 +3,31 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
+//using namespace std;
 
 int main(int argc, char* argv[]) {
 
-  string line;
-  ifstream pdbfile (argv[1], ios::in);
-  ofstream coordfile (argv[2], ios::out);
+  std::string line;
+  std::ifstream pdbfile (argv[1], std::ios::in);
+  std::ofstream coordfile (argv[2], std::ios::out);
     
   if (pdbfile.is_open()){  
     while (getline(pdbfile,line)){
-      string buf;
-      stringstream ss(line);
-      vector<string> items;
+      std::string buf;
+      std::stringstream ss(line);
+      std::vector<std::string> items;
       while (ss >> buf){
         items.push_back(buf);
       }
       if (items[0] == "ATOM"){
-	coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << endl;
+	coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << std::endl;
       }
     }
     pdbfile.close();
     coordfile.close();
   }
 
-  else cout << "Unable to open file"; 
+  else std::cout << "Unable to open file"; 
 
   return 0;
 }
