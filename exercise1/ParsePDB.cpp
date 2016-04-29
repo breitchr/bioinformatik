@@ -31,21 +31,23 @@ int main(int argc, char* argv[]) {
     
   if (pdbfile.is_open()){  
     while (getline(pdbfile,line)){
-      std::string buf;
-      std::stringstream ss(line);
-      std::vector<std::string> items;
-      while (ss >> buf){
-        items.push_back(buf);
-      }
-      if (items[0] == "ATOM"){
+      //std::string buf;
+      //std::stringstream ss(line);
+      //std::vector<std::string> items;
+      //while (ss >> buf){
+       // items.push_back(buf);
+      //}
+      if (line.substr(0,4) == "ATOM"){
 
         //x:31-38, y:39-46, z:47-54; one less because arrays in C++ are 0-based
+        //a single space is added because it may be, that all coordinates are the maximum allowed size.
+        //no trimming is done. could be added later on.
         switch(argc){
           case 2:
-            std::cout << line.substr(30,8) << line.substr(38,8) << line.substr(46,8) << '\n';//substr(position, length); just a reminder for myself
+            std::cout << line.substr(30,8) << ' ' << line.substr(38,8) << ' ' << line.substr(46,8) << '\n';//substr(position, length); just a reminder for myself
             break;
           case 3:
-            coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << std::endl;
+            coordfile << line.substr(30,8) << ' ' << line.substr(38,8) << ' ' << line.substr(46,8) << '\n';
             break;
 
         }
