@@ -11,21 +11,16 @@ int main(int argc, char* argv[]) {
   ifstream pdbfile (argv[1], ios::in);
   ofstream coordfile (argv[2], ios::out);
     
-  if (pdbfile.is_open()){
-    
-    while (getline(pdbfile,line) ){
+  if (pdbfile.is_open()){  
+    while (getline(pdbfile,line)){
       string buf;
       stringstream ss(line);
-      vector<string> tokens;
+      vector<string> items;
       while (ss >> buf){
-        tokens.push_back(buf);
+        items.push_back(buf);
       }
-      vector<int>::size_type sz = tokens.size();
-      if (tokens[0] == "ATOM"){
-	// debug print
-	//cout << tokens[6] << ' ' << tokens[7] << ' ' << tokens[8] << endl;
-	// write in file
-	coordfile << tokens[6] << ' ' << tokens[7] << ' ' << tokens[8] << endl;
+      if (items[0] == "ATOM"){
+	coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << endl;
       }
     }
     pdbfile.close();
