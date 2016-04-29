@@ -8,8 +8,26 @@
 int main(int argc, char* argv[]) {
 
   std::string line;
-  std::ifstream pdbfile (argv[1], std::ios::in);
-  std::ofstream coordfile (argv[2], std::ios::out);
+  std::ifstream pdbfile; //(argv[1], std::ios::in);
+  std::ofstream coordfile; //(argv[2], std::ios::out);
+
+  //Sanity check for correct number of arguments
+
+  switch(argc){
+
+    case 2:
+      pdbfile.open(argv[1], std::ios::in);
+      break;
+
+    case 3:
+      pdbfile.open(argv[1], std::ios::in);
+      coordfile.open(argv[2], std::ios::out);
+      break;
+
+    default:
+      std::cout << "Wrong number of arguments.\n\n Useage: ParsePDB inFile [outFile]" << "\n";
+      return 1;
+  }
     
   if (pdbfile.is_open()){  
     while (getline(pdbfile,line)){
@@ -20,7 +38,18 @@ int main(int argc, char* argv[]) {
         items.push_back(buf);
       }
       if (items[0] == "ATOM"){
-	coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << std::endl;
+
+        //x:31-38, y:39-46, z:47-54; one less because arrays in C++ are 0-based
+        switch(argc){
+          case 2:
+            std::cout << line.substr(30,8) << line.substr(38,8) << line.substr(46,8) << '\n';//substr(position, length); just a reminder for myself
+            break;
+          case 3:
+            coordfile << items[6] << ' ' << items[7] << ' ' << items[8] << std::endl;
+            break;
+
+        }
+	
       }
     }
     pdbfile.close();
