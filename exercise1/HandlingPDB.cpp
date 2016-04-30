@@ -2,40 +2,51 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
 
-  string line;
-  ifstream pdbfile (argv[1], ios::in);
-  ofstream translatefile (argv[2], ios::out);
 
-  vector<int> d;
+  std::string line;
+  std::ifstream pdbfile
+  std::ofstream translatefile
+  std::vector<double> d;
 
-  // set translation vector with command line arguments
-  if (argc > 3){
+  if(argc == 3){
+
+    pdbfile.open(argv[1], std::ios::in);
+    translatefile.open(argv[2], std::ios::out);
+    d.assign(3,1);
+
+  }else if(argc == 6){
+
+    pdbfile.open(argv[1], std::ios::in);
+    translatefile.open(argv[2], std::ios::out);
     d.push_back(stof(argv[3]));
     d.push_back(stof(argv[4]));
     d.push_back(stof(argv[5]));
-  }
-  // default translation vector (1,1,1)
-  else{
-    d.assign(3,1);
+
+  }else{
+
+    std::cout << "Wrong amount of Parameters\n\n Useage: HandlingPDB inFile outFile\n";
+    return 1;
+
   }
     
   if (pdbfile.is_open()){
     while (getline(pdbfile,line)){
       
-      string buf;
-      stringstream ss(line);
-      vector<string> items;
+      std::string buf;
+      std::stringstream ss(line);
+      std::vector<std::string> items;
       
       while (ss >> buf){
         items.push_back(buf);
       }
       
-      vector<int>::size_type sz = items.size();
+      std::vector<int>::size_type sz = items.size();
       
       if (items[0] == "ATOM"){
 	for (unsigned i = 0; i < sz; i++){
@@ -54,7 +65,7 @@ int main(int argc, char* argv[]) {
 	    translatefile << items[i] << ' ';
 	  }
 	}
-	translatefile << endl;
+	translatefile << std::endl;
       }
       
       else{
@@ -62,7 +73,7 @@ int main(int argc, char* argv[]) {
 	for (unsigned i = 0; i < sz; i++){
 	  translatefile << items[i] << ' ';
 	}
-	translatefile << endl;
+	translatefile << std::endl;
       }
       
     }
@@ -72,7 +83,7 @@ int main(int argc, char* argv[]) {
 
   }
 
-  else cout << "Unable to open file"; 
+  else std::cout << "Unable to open file"; 
 
   return 0;
 }
