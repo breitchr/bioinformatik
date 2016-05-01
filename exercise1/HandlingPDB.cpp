@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-using namespace std;
+//using namespace std;
 
 int main(int argc, char* argv[]) {
 
@@ -25,9 +25,9 @@ int main(int argc, char* argv[]) {
     pdbfile.open(argv[1], std::ios::in);
     translatefile.open(argv[2], std::ios::out);
   
-    d.push_back(stod(argv[3]));
-    d.push_back(stod(argv[4]));
-    d.push_back(stod(argv[5]));
+    d.push_back(std::stod(argv[3]));
+    d.push_back(std::stod(argv[4]));
+    d.push_back(std::stod(argv[5]));
 
   }else{
 
