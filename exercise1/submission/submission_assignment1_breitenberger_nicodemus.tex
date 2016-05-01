@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise 1}
+
+\begin{enumerate}
+ \item FORMUL record, colum 19 (* for water)
+ \item 77-78
+ \item x:31-38, y:39-46, z:47-54
+ \item 18-20
+ \item 22 (chainID)
+\end{enumerate}
+
+\section{Exercise 2}
+
+\begin{lstlisting}
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+int main(int argc, char* argv[]) {
+
+  std::string line;
+  std::ifstream pdbfile; //(argv[1], std::ios::in);
+  std::ofstream coordfile; //(argv[2], std::ios::out);
+
+  //Sanity check for correct number of arguments
+
+  switch(argc){
+
+    case 2:
+      pdbfile.open(argv[1], std::ios::in);
+      break;
+
+    case 3:
+      pdbfile.open(argv[1], std::ios::in);
+      coordfile.open(argv[2], std::ios::out);
+      break;
+
+    default:
+      std::cout << "Wrong number of arguments.\n\n Useage: ParsePDB inFile [outFile]" << "\n";
+      return 1;
+  }
+    
+  if (pdbfile.is_open()){ 
+  
+    while (getline(pdbfile,line)){
+    
+      if (line.substr(0,4) == "ATOM"){
+
+        //x:31-38, y:39-46, z:47-54; one less because arrays in C++ are 0-based
+        //a single space is added because it may be, that all coordinates are the maximum allowed size.
+        //no trimming is done. could be added later on.
+        switch(argc){
+          case 2:
+            std::cout << line.substr(30,8) << ' ' << line.substr(38,8) << ' ' << line.substr(46,8) << '\n';//substr(position, length); just a reminder for myself
+            break;
+          case 3:
+            coordfile << line.substr(30,8) << ' ' << line.substr(38,8) << ' ' << line.substr(46,8) << '\n';
+            break;
+
+        }
+	
+      }
+    }
+    pdbfile.close();
+    coordfile.close();
+  }
+
+  else std::cout << "Unable to open file"; 
+
+  return 0;
+}
+
+\end{lstlisting}
+
+\section{Exercise 3}
+
+\begin{lstlisting}
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
+int main(int argc, char* argv[]) {
+
+  std::string line;
+  std::ifstream pdbfile;
+  std::ofstream translatefile;
+  std::vector<double> d;
+
+  if(argc == 3){
+
+    pdbfile.open(argv[1], std::ios::in);
+    translatefile.open(argv[2], std::ios::out);
+    d.assign(3,1.000);
+
+  }else if(argc == 6){
+
+    pdbfile.open(argv[1], std::ios::in);
+    translatefile.open(argv[2], std::ios::out);
+  
+    d.push_back(std::stod(argv[3]));
+    d.push_back(std::stod(argv[4]));
+    d.push_back(std::stod(argv[5]));
+
+  }else{
+
+    std::cout << "Wrong amount of Parameters\n\n Useage: HandlingPDB inFile outFile\n";
+    return 1;
+
+  }
+
+  //Basic idea:
+  // Checking ATOM
+  // Grabbing Coordinates based on columns
+  // Parsing to double, adding offset
+  // And the c++ way to parsing double to string with fixed size and precision is to set up an outsream correctly
+  // Important: If you want a precision of 3, i.e 3 digits after the dot, you need an outstream.precision of 4. Otherwise
+  // it get rounded to early.
+  // Lastly, replacing the new string in the selected line
+  if (pdbfile.is_open()){
+    while (getline(pdbfile,line)){
+      
+      if (line.substr(0,4) == "ATOM"){
+
+        double xCoord = stod(line.substr(30,8));
+        double yCoord = stod(line.substr(38,8));
+        double zCoord = stod(line.substr(46,8));
+
+
+        xCoord += d[0];
+        yCoord += d[1];
+        zCoord += d[2];
+
+        std::ostringstream xCoordStrs;
+        std::ostringstream yCoordStrs;
+        std::ostringstream zCoordStrs;
+
+        xCoordStrs.width(8);
+        xCoordStrs.precision(4);
+        yCoordStrs.width(8);
+        yCoordStrs.precision(4);
+        zCoordStrs.width(8);
+        zCoordStrs.precision(4);
+
+        xCoordStrs << xCoord;
+        yCoordStrs << yCoord;
+        zCoordStrs << zCoord;
+
+        line.replace(30,8,xCoordStrs.str());
+        line.replace(38,8,yCoordStrs.str());
+        line.replace(46,8,zCoordStrs.str());
+      }
+
+      translatefile << line << '\n';
+
+    }
+
+  }else{
+
+    std::cout << "Unable to open file";
+
+  }
+
+  return 0;
+
+}
+
+\end{lstlisting}
+
+\end{document}
