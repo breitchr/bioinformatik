@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise 1}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
+\section{Exercise 2}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
+\section{Exercise 3}
+
+\subsection{$ y''(x) + y(x) = \sin(2x) $}
+
+General solution will be from the form $y(x) = y_c(x) + y_p(x)$, which is the sum of the complementary and particular solution.
+
+First determine the complementary solution: 
+\[ y''(x) + y(x) = 0 \]
+
+Which can be solved by a sin(x) as well as a cos(x). Because 
+
+\[  \partial^2_x \sin(x) = -\sin(x)  \]
+\[  \partial^2_x \cos(x) = -\cos(x)  \]
+
+Therefore
+
+\[ y_c(x) = A\sin(x) + B\cos(x) \]
+
+Second step is to determine the particular solution:
+
+\[ y_p(x) = C\sin(2x) + D\cos(2x) \]
+\[ \partial^2_x y_p(x) = -4C\sin(2x) -4D\cos(2x) \]
+
+\[ -4C\sin(2x) -4D\cos(2x) + C\sin(2x) + D\cos(2x) = \sin(2x) \]
+\[ -3C\sin(2x) - 3D\cos(2x) = \sin(2x) \]
+\[ \Rightarrow D = 0 ~~~~ C = -\frac{1}{3}\sin(2x) \]
+
+\[\boxed{ y(x) = A\sin(x) + B\cos(x) -\frac{1}{3}\sin(2x) }\]
+Proof:
+\[ y''(x) = -A\sin(x) - B\cos(x) -\frac{4}{3} \sin(2x)\]
+\[ y''(x) + y(x) = \sin(x) + B\cos(x) -\frac{1}{3}\sin(2x) -A\sin(x) - B\cos(x) -\frac{4}{3} \sin(2x) = \sin(2x) \]
+
+\subsection{$ y''(x) + y(x) = \sin(x) $}
+
+Complementary solution same as in section 3.1.
+
+\[ y_c(x) = A\sin(x) + B\cos(x) \]
+
+Guess for particular solution:
+\[ y_p(x) = C x \cos(x)\]
+\[ y'_p(x) = C \cos(x) - C x \sin(x) \]
+\[ y''_p(x) = - C \sin(x) - C x \cos(x) - C \sin(x) = -2 C \sin(x) - C x \cos(x) \]
+\[ -2 C \sin(x) - C x \cos(x) + C x \cos(x) = \sin(x) \]
+\[ \Rightarrow C = -\frac{1}{2} \]
+
+\[\boxed{ y(x) = A\sin(x) + B\cos(x) -\frac{1}{2}x\cos(x) }\]
+
+Proof:
+\[ y''(x) = - A\sin(x) - B\cos(x) + \sin(x) - \frac{1}{2} x \cos(x) \]
+\[ y''(x) + y(x) = A\sin(x) + B\cos(x) -\frac{1}{2}x\cos(x) - A\sin(x) - B\cos(x) + \sin(x) - \frac{1}{2} x \cos(x) \]
+\[ = \sin(x) \]
+
+\subsection{$ y''(x) - y(x) = 0 $}
+
+This is a homogeneous differential equation. Therefore it is only necessary to find the homogeneous solution $y_c(x)$.
+
+The equation can be solved by $e^x$ and $e^-x$. 
+
+\[\boxed{ y(x) = Ae^x + Be^{-x} }\]  
+Proof:
+
+\[ y''(x) = Ae^x + (-1)^2Be^{-x} = Ae^x + Be^{-x}\]
+
+\[ y''(x) - y(x) = Ae^x + Be^{-x} - Ae^x - Be^{-x} = 0\]
+\end{document}
