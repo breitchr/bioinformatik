@@ -5,6 +5,41 @@
 #include <BALL/KERNEL/atom.h>
 
 
+int main(int argc, char* argv[]){
+
+   BALL::Vector3 translationVector(1,1,1);
+   BALL::System translationSystem;
+
+
+   if(argc == 3){
+
+    pdbfile.open(argv[1], std::ios::in);
+    translatefile.open(argv[2], std::ios::out);
+
+   }else if(argc == 6){
+
+   pdbfile.open(argv[1], std::ios::in);
+   translatefile.open(argv[2], std::ios::out);
+  
+   translationVector = Vector3(std::stod(argv[3]), std::stod(argv[4]), std::stod(argv[5]))
+
+   }else{
+
+   std::cout << "Wrong amount of Parameters\n\n Useage: HandlingPDB inFile outFile\n";
+   return 1;
+
+   }
+
+
+
+
+}
+
+
+
+
+
+
 // read the PDB-file into a BALL::System
 PDBFile f("myProtein.pdb");
 System S;
