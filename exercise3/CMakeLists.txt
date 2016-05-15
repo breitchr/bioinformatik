@@ -10,4 +10,4 @@ add_definitions(-std=gnu++11)
 
 link_libraries(~/ball/build/lib/libBALL.so)
 
-add_executable(prog extractModel.cpp)
+add_executable(prog createNH3.cpp)
