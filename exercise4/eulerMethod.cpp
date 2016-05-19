@@ -18,15 +18,15 @@ double computeNextForce(double x_n_1){
 
 }
 
-double computeNextVelocity(double v_n_1, double F_n, int currentStep){
+double computeNextVelocity(double v_n_1, double F_n){
 
-	return v_n_1 * currentStep * H / M * F_n;
+	return v_n_1 + H / M * F_n;
 
 }
 
-double computeNextPosition(double x_n_1, double v_n_1, int currentStep){
+double computeNextPosition(double x_n_1, double v_n_1){
 
-	return x_n_1 + currentStep * H * v_n_1
+	return x_n_1 + H * v_n_1;
 
 }
 
@@ -51,14 +51,14 @@ int main(int argc, char* argv[]){
 	int i = 1;
 	for(i = 1; i <= STEPS; i++){
 
-		eulerFile << currentStep * H << ' ' << f_n  << ' ' << v_n_1 << ' ' << x_n_1 << '\n';
-
 		f_n = computeNextForce(x_n_1);
-		v_n_temp = computeNextVelocity(v_n_1, f_n, i);
-		x_n_temp = computeNextPosition(x_n_1, v_n_1, i);
+		double v_n_temp = computeNextVelocity(v_n_1, f_n);
+		double x_n_temp = computeNextPosition(x_n_1, v_n_1);
 
 		v_n_1 = v_n_temp;
 		x_n_1 = x_n_temp;
+
+		eulerFile << i * H << ' ' << f_n  << ' ' << v_n_1 << ' ' << x_n_1 << '\n';
 
 	}
 
