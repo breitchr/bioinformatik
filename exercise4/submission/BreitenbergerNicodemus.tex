@@ -9,7 +9,129 @@
 
 \section{Exercise: Solving a simple model -- system differential equations}
 
+Consider a water molecule. Assuming that the position of the oxygen atom is fixed and the angle between the hydrogen atom is also fixed the only thing that can change is the distance between the oxygen and hydrogen atoms. These are defined as $\rho_1$ and $\rho_2$. In the next steps described with $\rho_j $, $j \in\{1,2\}$.
+
+The connection of the oxygen und hydrogen atom can be approximated with a spring with a spring constant k. 
+
+Therefore equating Newton's force with the spring force results in:
+
+\[ m \partial^2_t \rho_j = -k\rho_j \]
+\[ \partial^2_t \rho_j + \frac{k}{m}\rho_j = 0  \]
+
+with the initial conditions:
+\[ \rho_j(0) = \tilde{\rho_j} \]
+\[ \partial_t\rho_j(0) = v_j \]
+
+$ \rho_j(t) $ has to fullfill the equation as well as the initial conditions. Assume an exponential function:
+
+\[ \rho_j(t) = c e^{\lambda t} \]
+
+\[ \partial^2_t\rho_j(t) = c \lambda^2 e^{\lambda t} \]
+
+Insert into differential equation:
+
+\[  c \lambda^2 e^{\lambda t} + c \frac{k}{m} e^{\lambda t} = 0 \]
+\[ \lambda^2 + \frac{k}{m} = 0 \]
+\[ \lambda_{1,2} = \pm\sqrt{-\frac{k}{m}} = \pm i \sqrt{\frac{k}{m}} \]
+
+Add the two complex solutions:
+
+\[ \rho_j(t) = c_1 \cdot e^{i\sqrt{\frac{k}{m}}t} + c_2 \cdot e^{-i\sqrt{\frac{k}{m}}t} \]
+
+Initial conditions:
+
+\[ \rho_j(0) = c_1 + c_2 = \tilde{\rho_j} \]
+
+This is fullfilled for:
+
+\[ \rho_j(t) =\tilde{\rho}_j \cos{\left(\sqrt{\frac{k}{m}}t\right)}\]
+
+with $c_1 = c_2 = \frac{1}{2}\tilde{\rho}_j$
+
+\[ \partial_t \rho_j(t) = - \tilde{\rho}_j \sqrt{\frac{k}{m}} \sin{\left(\sqrt{\frac{k}{m}}t\right)}  \]
+
+\[ \partial_t \rho_j(0) = - \tilde{\rho}_j \sqrt{\frac{k}{m}} \sin{\left(0\right)} = 0 \]
+
+This means for the velocity at t = 0: 
+
+\[ v_j(t=0) = 0 \]
+
+If we approximate the binding between the oxygen and the hydrogen atoms each with a spring force the initial conditions lay down that at the starting point t=0 the distances are at their maximum $\tilde{\rho_j}$. At time t=0 the velocity is zero because the motion is at a turning point. This motion of the water molecule is called the symmetric stretch mode.
+
 \section{Exercise: Lennard--Jones}
+ \begin{lstlisting}
+ # Gnuplot script file for plotting lennard jones potential and force
+ set   autoscale                      # scale axes automatically
+ unset log                            # remove any log-scaling
+ unset label                          # remove any previous labels
+ set xtic auto                        # set xtics automatically
+ set ytic auto                        # set ytics automatically
+ 
+ set title "Lennard-Jones potential and approximation"
+ set xlabel "r"
+ set ylabel "V(r)"
+ 
+ set xrange [11:13]
+ set yrange [-3:0]
+ 
+ LJV(x) = 2.0*((12.0/x)**12.0-2.0*(12.0/x)**6.0) 
+ V(x) = -2.0 + (6.0*2.0)/(12.0**2.0)*(13.0-7.0)*(x-12.0)**2.0
+ 
+ set multiplot layout 1,2 
+ set size 1,0.5
+ set origin 0,0
+ 
+ plot V(x) title "Approximation close to equilibrium point", LJV(x) title "Lennard-Jones Potential"
+ 
+ #set term png
+ #set output "LennardJones.png"
+ #replot
+ #set term x11
+ 
+ # o.b.d.A. vector r = |r|*(1,0,0)
+ # only in x direction because gnuplot does not provide 
+ # a 3d vector plot of a function
+ 
+ LJF(x) = 12.0*2.0/x * ((12.0/x)**12.0 - (12.0/x)**6.0)
+ F(x) = -72.0*(x-12.0)/(12.0**2.0)
+ 
+ set title "Lennard-Jones force and approximation"
+ set xlabel "x"
+ set ylabel "F(x)"
+ 
+ set xrange [10:15]
+ set yrange [-20:20]
+ 
+ set size 1,0.5
+ set origin 0,0.5
+ plot F(x) title "Approximation close to equilibrium point", LJF(x) title "Lennard-Jones Force"
+ 
+ unset multiplot
+ 
+ \end{lstlisting}
+ 
+ The plots verify that the approximation is reasonable close to the equilibrium point. Further away from this point the approximated curves are very different from the Lennard-Jones potential and force.
+ \\
+ \\
+\textbf{Morse potential:}  $ V(r) = \epsilon \left(1-e^{-\sigma(r-r_0)}\right)^2$
+ \\
+ \\
+ Corresponding force:
+\[ \vec{F}(\vec{r}) = - \nabla V = 2 \epsilon \sigma e^{-\sigma(r-r_0)} \left(1-e^{-\sigma(r-r_0)}\right) \frac{\vec{r}}{r} \]
+  
+Approximation: Taylor expansion of the potential as in the exercise description for minimum (equilibrium point $\tilde{r}$).
+\[ \frac{\partial V}{\partial r}\bigg|_{r=\tilde{r}} = 0 = 2 \epsilon \sigma e^{-\sigma(\tilde{r}-r_0)} \left(1-e^{-\sigma(\tilde{r}-r_0)}\right) \Leftrightarrow \tilde{r} = r_0 \]
+
+\[ \frac{\partial^2 V}{\partial r^2}\bigg|_{r = \tilde{r}} = 2\epsilon\sigma^2 e^{-2 \sigma (\tilde{r}-r_0)} - 2 \epsilon \sigma^2 e^{-\sigma(\tilde{r}-r_0)} \left(1-e^{-\sigma(\tilde{r}-r_0)}\right) \]
+
+\[ V(r) = V(r_0) + \frac{\partial V(r_0)}{\partial r}(r-r_0) + \frac{1}{2} \frac{\partial^2 V(r_0)}{\partial r^2}(r-r_0)^2 + O((r-r_0)^3) \]
+
+\[ V(r) \approx 0 + 0 + 2 \epsilon \sigma^2 (r-r_0)^2 = 2 \epsilon \sigma^2 (r-r_0)^2 \]
+
+\[ \vec{F}(\vec{r}) = - \nabla V \approx 4 \epsilon \sigma^2 (r-r_0) \frac{\vec{r}}{r} \]
+
+
+Then the linear approximation constant equals $k_M = 4 \epsilon \sigma^2$.
 
 \section{Exercise: Euler Method -- C++}
 \begin{lstlisting}
