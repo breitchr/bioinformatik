@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/MDwithBALL.dir/molecularDynamics.cpp.o  -o MDwithBALL  -L/home/bip15/git/ball/build/lib -rdynamic -lBALL -Wl,-rpath,/home/bip15/git/ball/build/lib 
