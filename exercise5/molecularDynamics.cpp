@@ -1,4 +1,3 @@
-#include <vector>
 #include <BALL/KERNEL/system.h>
 #include <BALL/KERNEL/selector.h>
 #include <BALL/FORMAT/PDBFile.h>
