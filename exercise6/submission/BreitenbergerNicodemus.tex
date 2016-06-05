@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise: Numerical integration}
+\begin{lstlisting}
+\end{lstlisting}
+
+\section{Exercise: Local Minimizer - C++}
+
+Given function: 
+\[ f(x,y) = e^{-x^2 - y^2} \]
+
+For local minima/maxima the condition $\partial_x f(x,y) = 0$ and $\partial_y f(x,y) = 0$ has to be fullfilled.
+
+\[ \partial_x f(x,y) = -2 x  e^{-x^2 - y^2} \]
+and 
+\[ \partial_y f(x,y) = -2 y  e^{-x^2 - y^2} \]
+
+Because $e^z$ is never zero for any z, so $ -2 x = 0$ and $ -2 y = 0$, equal to $x = 0$ and $y = 0$. That means a local extremal point is at (0,0).
+
+To determine if it is a local minimum or maximum the second derivatives have to be calculated. H is the Hessian matrix :
+
+\[ H(x,y) = \begin{pmatrix}
+f_{xx}(x,y) & f_{xy}(x,y) \\
+f_{yx}(x,y) & f_{yy}(x,y)
+\end{pmatrix} \]
+
+\[ D(x_c,y_c) = \det(H(x,y)) = f_{xx}(x_c,y_c) f_{yy}(x_c,y_c) - [f_{xy}(x_c,y_c)]^2 \]
+
+With the cases:
+
+\begin{itemize}
+	\item{If $D(a,b) > 0$ and $f_{xx}(a,b) > 0$  (a,b) is a local minimum of f.}
+	\item{If $D(a,b) > 0$ and $f_{xx}(a,b) < 0$  (a,b) is a local maximum of f.}
+	\item{If $D(a,b) < 0$ then (a,b) is a saddle point of f.}
+	\item{If $D(a,b) = 0$ then the derivative test is inconclusive.}
+\end{itemize}
+  
+\[ f_{xx}(x,y) = -2 e^{-x^2-y^2} + 4 x e^{-x^2-y^2} \]
+\[ f_{yy}(x,y) = -2 e^{-x^2-y^2} + 4 y e^{-x^2-y^2} \]
+
+\[ f_{xy}(x,y) = f_{yx}(x,y) = 4 x y e^{-x^2-y^2} \]
+
+\[ D(0,0) = (-2 + 0)\cdot (-2 + 0 ) - 0 = 4 > 0 \]
+\[ f_{xx}(0,0) = -2 + 0 = -2 < 0 \]
+
+This means that there is a local maximum at (0,0).
+
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
+\end{document}
