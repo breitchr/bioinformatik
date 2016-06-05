@@ -1,4 +1,4 @@
-# gnuplot script to plot Nose-Hoover output
+# gnuplot script to plot NumInt output
 set   autoscale                        # scale axes automatically
 unset log                              # remove any log-scaling
 unset label                            # remove any previous labels
