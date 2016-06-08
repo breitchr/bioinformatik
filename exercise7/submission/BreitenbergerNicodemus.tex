@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise: Calculation of the work}
+Point moving in force field:
+
+\[ \vec{F} = (3x + y)\vec{i} + (x + 2y)\vec{j} \]
+
+Two paths:
+
+\[ \gamma_1(t) = \begin{cases}
+                 t \vec{i} & t \in [0,3) \\
+                 3 \vec{i} + (t-3) \vec{j} & t \in [3,6] \\
+                 \end{cases}
+ \]
+\[ \gamma_2(t) = \begin{cases}
+                 t \vec{i} + t \vec{j} & t \in [0,3) \\
+                 \end{cases}
+\]
+
+Calculate work :
+
+\[ W_{ab} = \int_{\vec{r}_a}^{\vec{r}_b} \vec{F}(\vec{r}) d\vec{r}  = \int_{t_a}^{t_b} \vec{F}(\vec{r}) \frac{d\vec{r}}{dt} dt \]
+
+
+With $ \vec{r}(t) = \gamma_1(t) $:
+
+\[ W_{ab} = \int_{0}^{3} ((3t + 0)\vec{i} + (t + 0)\vec{j}) \frac{d (t \vec{i})}{dt} dt + \int_{3}^{6} ((9 + (t-3))\vec{i} + (3 + 2(t-3))\vec{j}) \frac{d (3 \vec{i} + (t-3)\vec{j})}{dt} dt \]
+\[ W_{ab} = \int_{0}^{3} (9 + (t-3)) dt +  \int_{3}^{6} (3 + 2(t-3)) dt \]
+\[ = \int_{0}^{3} (6 + t) dt +  \int_{3}^{6} (2t -3) dt = \left[ 6t + \frac{1}{2}t^2\right]_0^3 + \left[ t^2 - 3t\right]_3^6 \]
+\[ = 18 + 4.5 + 36 - 18 - 9 + 9 = 40.5 \]
+
+With $ \vec{r}(t) = \gamma_2(t) $:
+
+\[ W_{ab} = \int_{0}^{3} ((3t + t)\vec{i} + (t + 2t)\vec{j}) \frac{d(t \vec{i} + t \vec{j})}{dt} dt \]
+\[ = \int_{0}^{3} ((3t + t)\vec{i} + (t + 2t)\vec{j}) (\vec{i} + \vec{j}) dt \]
+\[ = \int_{0}^{3} (3t + t + t + 2t) dt = \int_{0}^{3} (3t + t + t + 2t) dt = \int_{0}^{3} 7t dt \]
+\[ = \left[ \frac{7}{2} t^2 \right]_0^3 = \frac{7}{2}9 = 31.5 \]
+
+The work depends on the path the point goes through the force field. 
+
+\section{Exercise: Generating a grid for Katchalski-Katzir}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
+\end{document}
