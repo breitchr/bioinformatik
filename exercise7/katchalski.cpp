@@ -32,37 +32,31 @@ int main(int argc, char* argv[]){
       //the read action for a pdbfile reads the data into a system which can be manipulated afterwards - and saved
       sourceFile.read(kkSystem);
       sourceFile.close();
+      
+      // get only first protein
+      BALL::Protein* protein = kkSystem.getProtein(0);
+      
+      if(protein->countChains() > 0){
+	
+	for(BALL::ChainIterator ch_it = protein->beginChain(); +ch_it; ++ch_it){
 
-      // iterate over all proteins
-      for(BALL::MoleculeIterator m_it = kkSystem.beginMolecule(); +m_it; ++m_it){
+	  for(BALL::ResidueIterator r_it = ch_it->beginResidue(); +r_it; ++r_it){
 
-         //We need to check if the molecule we just grabbed with m_it is indeed a protein. if it is not,
-         //We cannot iterate over chains and residues.
-         if (BALL::RTTI::isKindOf<BALL::Protein>(*(m_it))){
-
-             BALL::Protein* protein = BALL::RTTI::castTo<BALL::Protein>(*(m_it));
-
-             if(protein->countChains() > 0){
-
-               for(BALL::ChainIterator ch_it = protein->beginChain(); +ch_it; ++ch_it){
-
-                  for(BALL::ResidueIterator r_it = ch_it->beginResidue(); +r_it; ++r_it){
-
-                     for(BALL::AtomIterator a_it = r_it->beginAtom(); +a_it; ++a_it){
-		       BALL::Element element = a_it->getElement();
-		       // name
-		       cout << element.getName() << " ";
-		       // position
-		       cout << a_it->getPosition() << " ";
-		       // van der waals radius
-		       cout << element.getVanDerWaalsRadius() << endl;
-
-                     }                   
-                  }
-               }
-            }
-         }
+	    for(BALL::AtomIterator a_it = r_it->beginAtom(); +a_it; ++a_it){
+	      BALL::Element element = a_it->getElement();
+	      // name
+	      cout << element.getName() << " ";
+	      // position
+	      cout << a_it->getPosition() << " ";
+	      // van der waals radius
+	      cout << element.getVanDerWaalsRadius() << endl;
+	      
+	    }                   
+	  }
+	}
       }
+    
+      
    }else{
 
       std::cout << "Could not open PDB file." << '\n';
