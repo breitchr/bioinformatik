@@ -83,9 +83,9 @@ int main(int argc, char* argv[]){
    }
 
 
-   int n = 20;
-   int m = 20;
-   int l = 20;
+   int n = 50;
+   int m = 50;
+   int l = 50;
    float px;
    float py;
    float pz;
@@ -100,14 +100,13 @@ int main(int argc, char* argv[]){
 	 int c = 0;
 	 while (c < atompos.size()){
 	  
-	   px = i-n/2;
-	   py = j-m/2;
-	   pz = k-l/2;
+	   px = 0.1*(i-n/2);
+	   py = 0.1*(j-m/2);
+	   pz = 0.1*(k-l/2);
 
 	   // inside 
 	   if (px > (atompos[c][0] - 0.1*vwradii[c]) && px < (atompos[c][0] + 0.1*vwradii[c]) && py > (atompos[c][1] - 0.1*vwradii[c]) && py < (atompos[c][1] + 0.1*vwradii[c]) && pz > (atompos[c][2] - 0.1*vwradii[c]) && pz < (atompos[c][2] + 0.1*vwradii[c]) ){
 	     kkgrid[i][j][k] = beta1;
-	     break;
 	   }
 	   // outside
 	   else if  (px < (atompos[c][0] - 0.1*vwradii[c]) ||  px > (atompos[c][0] + 0.1*vwradii[c]) || py > (atompos[c][1] - 0.1*vwradii[c]) || py < (atompos[c][1] + 0.1*vwradii[c]) || pz > (atompos[c][2] - 0.1*vwradii[c]) || pz < (atompos[c][2] + 0.1*vwradii[c]) ){
@@ -116,6 +115,7 @@ int main(int argc, char* argv[]){
 	   // boundary
 	   else{
 	     kkgrid[i][j][k] = alpha1;
+	     cout << "boundary" << endl; 
 	   }
 	   c++;
 
@@ -134,7 +134,8 @@ int main(int argc, char* argv[]){
 
        for (int z(0); z < l; z++){
 	 
-	 kkfile << x-n/2 << " " << y-m/2 << " " << z-l/2 << " " << kkgrid[x][y][z] << endl; 
+	 kkfile << 0.1*(x-n/2) << " " << 0.1*(y-m/2) << " " << 0.1*(z-l/2) << " " << kkgrid[x][y][z] << endl; 
+	 cout << 0.1*(x-n/2) << " " << 0.1*(y-m/2) << " " << 0.1*(z-l/2) << " " << kkgrid[x][y][z] << endl; 
        }
      }
    }
