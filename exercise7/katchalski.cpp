@@ -124,10 +124,11 @@ int main(int argc, char* argv[]){
      }
    }
 
+   // safe kkgrid to file
    ofstream kkfile;
    kkfile.open("kkgrid.txt");
    kkfile << "x y z value" << endl;
-   // safe kkgrid to file
+  
    for (int x(0); x < n; x++){
 
      for (int y(0); y < m; y++){
@@ -135,13 +136,16 @@ int main(int argc, char* argv[]){
        for (int z(0); z < l; z++){
 	 
 	 kkfile << 0.1*(x-n/2) << " " << 0.1*(y-m/2) << " " << 0.1*(z-l/2) << " " << kkgrid[x][y][z] << endl; 
-	 cout << 0.1*(x-n/2) << " " << 0.1*(y-m/2) << " " << 0.1*(z-l/2) << " " << kkgrid[x][y][z] << endl; 
+	 // debug output
+	 //cout << 0.1*(x-n/2) << " " << 0.1*(y-m/2) << " " << 0.1*(z-l/2) << " " << kkgrid[x][y][z] << endl; 
        }
      }
    }
 
    kkfile.close();
    
+   system("gnuplot plotkkgrid.gnu");
+
    return 0;
 
 }
