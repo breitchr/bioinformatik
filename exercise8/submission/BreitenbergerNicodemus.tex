@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise: Fourier transform}
+
+\[ \begin{aligned}
+	f_1(x) = \sin(x) &  &  x \in [-\pi,\pi] \\
+	f_2(x) = \cos(x) &  &  x \in [-\pi,\pi] \\
+	f_3(x) = e^{-x} &  &  x \in [0,2]
+\end{aligned} \]
+
+Fourier transformation:
+\[ F[f](k) = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} f(x) e^{-ikx} dx \]
+
+\[ F[f_1](k) = \int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}} \sin(x) e^{-ikx} dx =  \frac{1}{\sqrt{2\pi}} \int_{-\pi}^{\pi} \frac{e^{ix}-e^{-ix}}{2i} e^{-ikx} dx \]
+\[ = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^{\pi} \frac{1}{2i} \left(e^{ix(1-k)} - e^{-ix(1+k)}\right) dx \]
+\[ = \frac{1}{2i\sqrt{2\pi}} \left[\frac{1}{i(1-k)}e^{ix(1-k)} + \frac{1}{i(1+k)}e^{-ix(1+k)}\right]_{-\pi}^{\pi} \]
+\[ = \frac{-1}{2\sqrt{2\pi}} \left[\frac{1}{(1-k)}e^{i\pi(1-k)} + \frac{1}{(1+k)}e^{-i\pi(1+k)} - \frac{1}{(1-k)}e^{i(-\pi)(1-k)} - \frac{1}{(1+k)}e^{-i(-\pi)(1+k)}\right]\]
+\[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[(1+k)e^{i\pi(1-k)} + (1-k)e^{-i\pi(1+k)} - (1+k)e^{-i\pi(1-k)} - (1-k)e^{i\pi(1+k)}\right]\]
+\[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[-(1+k)(e^{- i\pi k} - e^{i\pi k}) - (1-k)(e^{-i\pi k}  - e^{i\pi k})\right]\]
+\[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[(- 1 - k - 1 + k)(e^{- i\pi k} - e^{i\pi k})\right]\]
+\[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[-2 (e^{- i\pi k} - e^{i\pi k})\right] = \frac{1}{\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[ (e^{- i\pi k} - e^{i\pi k})\right]\]
+\[ F[f_1](k) = \frac{i}{(1 - k^2)}\sqrt{\frac{2}{\pi}} \sin(\pi k)\]
+\end{document}
