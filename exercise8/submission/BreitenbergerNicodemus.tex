@@ -26,5 +26,25 @@ Fourier transformation:
 \[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[-(1+k)(e^{- i\pi k} - e^{i\pi k}) - (1-k)(e^{-i\pi k}  - e^{i\pi k})\right]\]
 \[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[(- 1 - k - 1 + k)(e^{- i\pi k} - e^{i\pi k})\right]\]
 \[ = \frac{-1}{2\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[-2 (e^{- i\pi k} - e^{i\pi k})\right] = \frac{1}{\sqrt{2\pi}}\frac{1}{(1 - k^2)} \left[ (e^{- i\pi k} - e^{i\pi k})\right]\]
-\[ F[f_1](k) = \frac{i}{(1 - k^2)}\sqrt{\frac{2}{\pi}} \sin(\pi k)\]
+\[ F[f_1](k) = \frac{-i}{(1 - k^2)}\sqrt{\frac{2}{\pi}} \sin(\pi k)\]
+
+\newpage
+\[ F[f_2](k) = \int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}} \cos(x) e^{-ikx} dx =  \frac{1}{\sqrt{2\pi}} \int_{-\pi}^{\pi} \frac{e^{ix}+e^{-ix}}{2} e^{-ikx} dx \]
+\[ = \frac{1}{2\sqrt{2\pi}} \int_{-\pi}^{\pi} \left(e^{ix(1-k)} + e^{-ix(1+k)}\right) dx \]
+\[ = \frac{1}{2\sqrt{2\pi}} \left[\frac{1}{i(1-k)}e^{ix(1-k)} - \frac{1}{i(1+k)}e^{-ix(1+k)}\right]_{-\pi}^{\pi} \]
+\[ = \frac{1}{2i\sqrt{2\pi}} \left[\frac{1}{(1-k)}e^{i\pi(1-k)} - \frac{1}{(1+k)}e^{-i\pi(1+k)} - \frac{1}{(1-k)}e^{-i\pi(1-k)} + \frac{1}{(1+k)}e^{i\pi(1+k)}\right] \]
+\[ = \frac{1}{2i\sqrt{2\pi}}\frac{1}{(1-k^2)} \left[(1+k)e^{i\pi(1-k)} - (1-k)e^{-i\pi(1+k)} - (1+k)e^{-i\pi(1-k)} + (1-k)e^{i\pi(1+k)}\right] \]
+\[ = \frac{1}{2i\sqrt{2\pi}}\frac{1}{(1-k^2)} \left[(1+k)(e^{i\pi(1-k)} - e^{-i\pi(1-k)}) + (1-k)(e^{i\pi(1+k)} - e^{-i\pi(1+k)})\right] \]
+\[ = \frac{1}{2i\sqrt{2\pi}}\frac{1}{(1-k^2)} \left[-(1+k)(e^{-i\pi k} - e^{i\pi k}) + (1-k)(e^{-i\pi k} - e^{i\pi k})\right] \]
+\[ = \frac{-2 k}{2i\sqrt{2\pi}}\frac{1}{(1-k^2)} (e^{-i\pi k} - e^{i\pi k}) = \frac{k}{(1-k^2)}\sqrt{\frac{2}{\pi}} \sin(\pi k) \]
+
+
+
+
+
+
+
+
+
+
 \end{document}
