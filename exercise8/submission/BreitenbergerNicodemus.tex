@@ -44,8 +44,48 @@ Fourier transformation:
 \[ = \frac{1}{\sqrt{2\pi}} \left[\frac{-1}{1-ik} e^{-x(1-ik)}\right]_0^2 =  \frac{1}{\sqrt{2\pi}} \left[\frac{-1}{1-ik} (e^{-2(1-ik)} - 1)\right] = \frac{(1 - e^{-2(1-ik)})}{\sqrt{2\pi}(1-ik)} \]
 
 
+\section{Exercise: Convolution}
 
+Discrete convolution is defined as 
+\[\sum_{k\in D} f(k) \cdot g(n-k)\]
 
+with $f(x) = \sin (x)$ and $g(x) = \cos (x)$ in $[-\pi , \pi]$. Discretizing the signal gives $15$ discrete points, which are 
+\[-\pi, -\pi\frac{6}{7}, -\pi\frac{5}{7}, -\pi\frac{4}{7}, -\pi\frac{3}{7}, -\pi\frac{2}{7}, -\pi\frac{1}{7}, 0 , \pi\frac{1}{7},\pi\frac{2}{7},\pi\frac{3}{7},\pi\frac{4}{7},\pi\frac{5}{7},\pi\frac{6}{7},\pi\]
 
+Caculating the discrete convolution gives:
+\[F(0) = \sin(-\pi)\cdot\cos(-\pi + \pi) = 0\]
+
+\[F(1) = \sin(-\pi)\cdot\cos(-\frac{6}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{6}{7}\pi + \frac{6}{7}\pi)= -0.05\]
+
+\[F(2) = \sin(-\pi)\cdot\cos(-\frac{5}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{5}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(-\frac{5}{7}\pi + \frac{5}{7}\pi)= -8.7\cdot10^{-3}\]
+
+\[F(3) = \sin(-\pi)\cdot\cos(-\frac{4}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{4}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(-\frac{4}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(-\frac{4}{7}\pi + \frac{4}{7}\pi) = -8.7\cdot10^{-3} = -0.01\]
+
+\[F(4) = \sin(-\pi)\cdot\cos(-\frac{3}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{3}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(-\frac{3}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(-\frac{3}{7}\pi + \frac{4}{7}\pi)  + \sin(-\frac{3}{7}\pi)\cdot\cos(-\frac{3}{7}\pi + \frac{3}{7}\pi) = -0.014\]
+
+\[F(5) = \sin(-\pi)\cdot\cos(-\frac{2}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{2}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(-\frac{2}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(-\frac{2}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(-\frac{2}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(-\frac{2}{7}\pi + \frac{2}{7}\pi)\]
+
+\[F(6) = \sin(-\pi)\cdot\cos(-\frac{1}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(-\frac{1}{7}\pi + \frac{1}{7}\pi)\]
+
+\[F(7) = \sin(-\pi)\cdot\cos(\pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\frac{1}{7}\pi) + \sin(0)\cdot\cos(0 + 0)\]
+
+\[F(8) = \sin(-\pi)\cdot\cos(\frac{1}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\frac{1}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{1}{7}\pi - \frac{1}{7}\pi)\]
+
+\[F(9) = \sin(-\pi)\cdot\cos(\frac{2}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\frac{2}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{1}{7}\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\frac{2}{7}\pi - \frac{2}{7}\pi)\]
+
+\[F(10) = \sin(-\pi)\cdot\cos(\frac{3}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{3}{7}\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\frac{3}{7}\pi - \frac{2}{7}\pi)\]
+\[ + \sin(\frac{3}{7}\pi)\cdot\cos(\frac{3}{7}\pi - \frac{3}{7}\pi)\]
+
+\[F(11) = \sin(-\pi)\cdot\cos(\frac{4}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{4}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{4}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{4}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{4}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\frac{4}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\frac{3}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{4}{7}\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\frac{4}{7}\pi - \frac{2}{7}\pi)\]
+\[ + \sin(\frac{3}{7}\pi)\cdot\cos(\frac{4}{7}\pi - \frac{3}{7}\pi)  + \sin(\frac{4}{7}\pi)\cdot\cos(\frac{4}{7}\pi - \frac{4}{7}\pi)\]
+
+\[F(12) = \sin(-\pi)\cdot\cos(\frac{5}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{5}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{5}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{5}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{5}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(-\frac{5}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(-\frac{5}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{5}{7}\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\frac{5}{7}\pi - \frac{2}{7}\pi)\]
+\[ + \sin(\frac{3}{7}\pi)\cdot\cos(\frac{5}{7}\pi - \frac{3}{7}\pi)  + \sin(\frac{4}{7}\pi)\cdot\cos(\frac{5}{7}\pi - \frac{4}{7}\pi)  + \sin(\frac{5}{7}\pi)\cdot\cos(\frac{5}{7}\pi - \frac{5}{7}\pi)\]
+
+\[F(13) = \sin(-\pi)\cdot\cos(\frac{6}{7}\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\frac{6}{7}\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\frac{6}{7}\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\frac{6}{7}\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\frac{6}{7}\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(-\frac{6}{7}\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(-\frac{6}{7}\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{2}{7}\pi)\]
+\[ + \sin(\frac{3}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{3}{7}\pi)  + \sin(\frac{4}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{4}{7}\pi)  + \sin(\frac{5}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{5}{7}\pi) + \sin(\frac{6}{7}\pi)\cdot\cos(\frac{6}{7}\pi - \frac{6}{7}\pi)\]
+
+\[F(14) = \sin(-\pi)\cdot\cos(\pi + \pi) + \sin(-\frac{6}{7}\pi)\cdot\cos(\pi + \frac{6}{7}\pi) + \sin(-\frac{5}{7}\pi)\cdot\cos(\pi + \frac{5}{7}\pi)\] \[+ \sin(-\frac{4}{7}\pi)\cdot\cos(\pi + \frac{4}{7}\pi) + \sin(-\frac{3}{7}\pi)\cdot\cos(\pi + \frac{3}{7}\pi) + \sin(-\frac{2}{7}\pi)\cdot\cos(\pi + \frac{2}{7}\pi)\]\[ + \sin(-\frac{1}{7}\pi)\cdot\cos(\pi + \frac{1}{7}\pi) + 0 + \sin(\frac{1}{7}\pi)\cdot\cos(\pi - \frac{1}{7}\pi)  + \sin(\frac{2}{7}\pi)\cdot\cos(\pi - \frac{2}{7}\pi)\]
+\[ + \sin(\frac{3}{7}\pi)\cdot\cos(\pi - \frac{3}{7}\pi)  + \sin(\frac{4}{7}\pi)\cdot\cos(\pi - \frac{4}{7}\pi)  + \sin(\frac{5}{7}\pi)\cdot\cos(\pi - \frac{5}{7}\pi) + \sin(\frac{6}{7}\pi)\cdot\cos(\pi - \frac{6}{7}\pi) + 0\]
 
 \end{document}
