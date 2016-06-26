@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage{bbold}
+\include{Header}
+
+\begin{document}
+
+\Submittedby{Breitenberger, Nicodemus}
+\date{\today}
+
+\section{Exercise: Minimize RMSD}
+
+\[ \textrm{RMSD}(A,B) = \min_{R,T} \sqrt{\frac{1}{N}\sum_i || A_i - R (B_i - T) ||^2 }\]
+
+No rotation $\Rightarrow$ R is equal to identity matrix.
+
+\[ \textrm{RMSD}(A,B) = \min_{T} \sqrt{\frac{1}{N}\sum_i || A_i - (B_i - T) ||^2 }\]
+
+Minimize with respect to T $\Rightarrow \partial_T \textrm{RMSD}(A,B) = 0 $
+
+\[ \partial_T \sqrt{\frac{1}{N}\sum_i || A_i - (B_i - T) ||^2} \]
+\[ = \partial_T \sqrt{\frac{1}{N} \sum_i \left(\sqrt{\sum_i A_i - (B_i - T) }\right)^2} \]
+\[ = \partial_T \sqrt{\frac{1}{N} \sum_i  A_i - (B_i - T)} = 0\]
+
+\[ \Rightarrow T = \frac{1}{N} \sum_i (B_i - A_i) \]
+
+This is equivalent to moving the center of mass of A into the center of mass of B.
+
+
+\end{document}
