@@ -65,6 +65,8 @@ int main(int argc, char* argv[]){
     outFile << mdSystem;
     outFile.close();
 
+    // System((string("gmx pdb2gmx -f ")+pdbid+string(".pdb -o ")+pdbid+string(".gro")).c_str());
+
   }
  
   return 0;
