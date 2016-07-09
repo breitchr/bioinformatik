@@ -10,6 +10,51 @@
 \section{Protein Docking}
 %Workin on it now
 
+define N 4 //number of possible candidates to pass on
+
+ListOfDockedProtein dock2Proteins(base, add){
+  ListOfCandidates = execute rosetta base add;
+  
+  ListOfEnergies = [];
+  for candidate in ListOfCandidates{
+  
+    calculate energy;
+    check for clash;
+    if(clash in candidate){
+    
+      set energy of candidate to +infinity;
+      
+    }else{
+    
+      set energy of candidate;
+    
+    }
+  
+  }
+  
+  ListOfDockedProtein[N];
+  for energy in ListOfEnergies{
+  
+    get N lowest energies of all possible energies;
+  
+  }
+  
+  return ListOfDockedProtein;
+
+Grobe idee:
+
+function hat zwei dateinamen
+- versucht beide zusammenzubringen; rermittelt mit Rosetta kandidaten
+
+programm liest grundstruktur ein
+übergibt beide an rosetta, ermittelt kandidaten
+check kandidaten nach geringster energie, check for clashes bis die N geringsten ohne clashes habe
+
+gehe von den N aus und füge ein weiteres hinzu.
+
+tue dies 5 mal
+
+
 \section{Score Calculation}
 \begin{lstlisting}
 

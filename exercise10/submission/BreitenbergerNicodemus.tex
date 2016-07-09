@@ -8,21 +8,89 @@
 \date{\today}
 
 \section{Protein Docking}
-%Workin on it now
+\begin{lstlisting}
 
-Grobe idee:
 
-function hat zwei dateinamen
-- versucht beide zusammenzubringen; rermittelt mit Rosetta kandidaten
+//Basic idea: dock one monomer after the other, buiding a longer chain with each docking.
+//During each docking, check for clashes and pass the N (in the example its 4) possible
+//candidates with the lowest energy without clashes to the next docking. This ensures
+//that we get a wider array of possible solutions
 
-programm liest grundstruktur ein
-übergibt beide an rosetta, ermittelt kandidaten
-check kandidaten nach geringster energie, check for clashes bis die N geringsten ohne clashes habe
+define N 4 //number of possible candidates to pass on
+define SIZE 5 //number of wanted size of monomer-1
 
-gehe von den N aus und füge ein weiteres hinzu.
+ListOfDockedProtein dock2Proteins(base, add){
+  ListOfCandidates = execute rosetta base add;
+  
+  ListOfEnergies = [];
+  for candidate in ListOfCandidates{
+  
+    calculate energy;
+    check for clash;
+    if(clash in candidate){
+    
+      set energy of candidate to +infinity;
+      
+    }else{
+    
+      set energy of candidate;
+    
+    }
+  
+  }
+  
+  ListOfDockedProtein[N];
+  for energy in ListOfEnergies{
+  
+    get N lowest energies of all possible energies;
+  
+  }
+  
+  return ListOfDockedProtein;
+  
+int main(arguments){
 
-tue dies 5 mal
+  read monomer from file;
+  
+  ListOfDockedProtein Current = dock2Proteins(monomer, monomer);
+  
+  counter = 0;
+  repeat until counter = SIZE{
+  
+    ListOfListOfDockedProteins = [];
+  
+    i = 0;
+    for each protein in Current{
+    
+      ListOfListOfDockedProteins[i] = dock2Proteins(protein, monomer);
+      i++;
+      
+    }
+    
+    ListOfDockedProtein Temp = [];
+    for each Protein in ListOfListOfDockedProteins{
+      
+      check energies;
+      enter the four lowest energies into Temp;
+	
+     }
+    
+    Current = Temp;
+    counter++;
+  
+  }
+  
+  //Do a last energy check
+  for each protein in Current{
+  
+    check energies;
+    return protein with lowest energy;
+  
+  }
+  
+}
 
+\end{lstlisting}
 
 \section{Score Calculation}
 \begin{lstlisting}
